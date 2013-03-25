@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui.ui'
 #
-# Created: Wed Mar 13 23:35:45 2013
+# Created: Sun Mar 24 23:19:24 2013
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,29 +26,29 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(689, 466)
+        MainWindow.resize(800, 500)
         self.centralwidget = QtGui.QWidget(MainWindow)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
-        self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        self.horizontalLayout = QtGui.QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setContentsMargins(3, 3, 3, 0)
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.listModule = QtGui.QListWidget(self.centralwidget)
-        self.listModule.setGeometry(QtCore.QRect(0, 0, 251, 421))
         self.listModule.setObjectName(_fromUtf8("listModule"))
-        self.tabWidget = QtGui.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(250, 0, 441, 421))
-        self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
-        self.basic = QtGui.QWidget()
-        self.basic.setObjectName(_fromUtf8("basic"))
-        self.tabWidget.addTab(self.basic, _fromUtf8(""))
-        self.advenced = QtGui.QWidget()
-        self.advenced.setObjectName(_fromUtf8("advenced"))
-        self.tabWidget.addTab(self.advenced, _fromUtf8(""))
+        self.horizontalLayout.addWidget(self.listModule)
+        self.form = QtGui.QWidget(self.centralwidget)
+        self.form.setAutoFillBackground(True)
+        self.form.setObjectName(_fromUtf8("form"))
+        self.formLayout = QtGui.QFormLayout(self.form)
+        self.formLayout.setMargin(0)
+        self.formLayout.setVerticalSpacing(20)
+        self.formLayout.setObjectName(_fromUtf8("formLayout"))
+        self.buttonOpt = QtGui.QPushButton("&Advenced")
+        self.formLayout.addWidget(self.buttonOpt)
+        self.horizontalLayout.addWidget(self.form)
+        self.horizontalLayout.setStretch(0, 1)
+        self.horizontalLayout.setStretch(1, 2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 689, 21))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
@@ -60,23 +60,21 @@ class Ui_MainWindow(object):
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
-        self.actionNew = QtGui.QAction(MainWindow)
-        self.actionNew.setObjectName(_fromUtf8("actionNew"))
+        self.actionOpen = QtGui.QAction(MainWindow)
+        self.actionOpen.setObjectName(_fromUtf8("actionOpen"))
+        self.menuFile.addAction(self.actionOpen)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuPreferences.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+#        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.basic), _translate("MainWindow", "Basic", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.advenced), _translate("MainWindow", "Advenced", None))
         self.menuFile.setTitle(_translate("MainWindow", "File", None))
         self.menuPreferences.setTitle(_translate("MainWindow", "Preferences", None))
         self.menuHelp.setTitle(_translate("MainWindow", "Help", None))
-        self.actionNew.setText(_translate("MainWindow", "New", None))
-
+        self.actionOpen.setText(_translate("MainWindow", "Open", None))
 

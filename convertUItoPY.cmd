@@ -1,1 +1,1 @@
-pyuic4 -x gui.ui -o gui.py
+pyuic4 -x gui.ui -o ngui.py
