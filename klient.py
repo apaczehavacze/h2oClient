@@ -74,9 +74,16 @@ class MyForm(QtGui.QMainWindow):
         self.filename = fd.getOpenFileName() # getting a filename from chosen file
 
         from os.path import isfile, split
-        import ConfigParser
 
-        config = ConfigParser.ConfigParser()
+        req_version = (2,8)
+        cur_version = sys.version_info
+        
+        if cur_version >= req_version:
+            import configparser
+            config = configparser.ConfigParser()
+        else:
+            import ConfigParser
+            config = ConfigParser.ConfigParser()
 
         if isfile(self.filename):
             head, tail = split(str(self.filename)) # tail - a filename without path
@@ -98,4 +105,4 @@ if __name__ == "__main__":
     try:
         sys.exit(app.exec_())
     except:
-        print "Zamkniecie aplikacji."
+        print('Zamkniecie aplikacji.')
