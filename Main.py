@@ -25,7 +25,16 @@ class MyForm(QtGui.QMainWindow):
         self.file_dialog()
         
     def file_dialog(self):
-        import configparser
+        req_version = (2,8)
+        cur_version = sys.version_info
+        
+        if cur_version >= req_version:
+            import configparser
+            config = configparser.ConfigParser()
+        else:
+            import ConfigParser
+            config = ConfigParser.ConfigParser()
+            
         config = configparser.RawConfigParser()
         config.read('example.config')
         for x in config.sections(): 
