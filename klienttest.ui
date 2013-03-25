@@ -59,10 +59,13 @@
            <number>0</number>
           </property>
           <property name="text">
-           <string>FORM</string>
+           <string/>
           </property>
           <property name="textFormat">
            <enum>Qt::AutoText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>C:/Users/Bary/Desktop/form.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -93,7 +96,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="form_label2">
           <property name="font">
            <font>
             <pointsize>16</pointsize>
@@ -111,10 +114,13 @@
            <number>0</number>
           </property>
           <property name="text">
-           <string>FORM</string>
+           <string/>
           </property>
           <property name="textFormat">
            <enum>Qt::AutoText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>C:/Users/Bary/Desktop/form.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
