@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'klienttest.ui'
 #
-# Created: Sat Mar 23 17:18:28 2013
+# Created: Sun Mar 24 22:18:06 2013
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,7 +14,7 @@ try:
 except AttributeError:
     def _fromUtf8(s):
         return s
-
+                            
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
@@ -22,7 +22,7 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-
+                                                                        
 class Ui_Client(object):
     def setupUi(self, Client):
         Client.setObjectName(_fromUtf8("Client"))
@@ -55,7 +55,9 @@ class Ui_Client(object):
         self.form_label.setFrameShape(QtGui.QFrame.Box)
         self.form_label.setLineWidth(1)
         self.form_label.setMidLineWidth(0)
+        self.form_label.setText(_fromUtf8(""))
         self.form_label.setTextFormat(QtCore.Qt.AutoText)
+        self.form_label.setPixmap(QtGui.QPixmap(_fromUtf8("C:/Users/Bary/Desktop/form.png")))
         self.form_label.setScaledContents(False)
         self.form_label.setAlignment(QtCore.Qt.AlignCenter)
         self.form_label.setObjectName(_fromUtf8("form_label"))
@@ -76,20 +78,22 @@ class Ui_Client(object):
         self.tab_advanced.setObjectName(_fromUtf8("tab_advanced"))
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.tab_advanced)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
-        self.label_2 = QtGui.QLabel(self.tab_advanced)
+        self.form_label2 = QtGui.QLabel(self.tab_advanced)
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
-        self.label_2.setFont(font)
-        self.label_2.setFrameShape(QtGui.QFrame.Box)
-        self.label_2.setLineWidth(1)
-        self.label_2.setMidLineWidth(0)
-        self.label_2.setTextFormat(QtCore.Qt.AutoText)
-        self.label_2.setScaledContents(False)
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.verticalLayout_2.addWidget(self.label_2)
+        self.form_label2.setFont(font)
+        self.form_label2.setFrameShape(QtGui.QFrame.Box)
+        self.form_label2.setLineWidth(1)
+        self.form_label2.setMidLineWidth(0)
+        self.form_label2.setText(_fromUtf8(""))
+        self.form_label2.setTextFormat(QtCore.Qt.AutoText)
+        self.form_label2.setPixmap(QtGui.QPixmap(_fromUtf8("C:/Users/Bary/Desktop/form.png")))
+        self.form_label2.setScaledContents(False)
+        self.form_label2.setAlignment(QtCore.Qt.AlignCenter)
+        self.form_label2.setObjectName(_fromUtf8("form_label2"))
+        self.verticalLayout_2.addWidget(self.form_label2)
         self.listWidget_adv = QtGui.QListWidget(self.tab_advanced)
         self.listWidget_adv.setObjectName(_fromUtf8("listWidget_adv"))
         self.verticalLayout_2.addWidget(self.listWidget_adv)
@@ -124,17 +128,15 @@ class Ui_Client(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuPreferences.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
-
+        
         self.retranslateUi(Client)
         self.tabWidget_bas.setCurrentIndex(0)
         QtCore.QObject.connect(self.actionQuit, QtCore.SIGNAL(_fromUtf8("triggered()")), Client.close)
         QtCore.QMetaObject.connectSlotsByName(Client)
-
+        
     def retranslateUi(self, Client):
         Client.setWindowTitle(_translate("Client", "Client", None))
-        self.form_label.setText(_translate("Client", "FORM", None))
         self.tabWidget_bas.setTabText(self.tabWidget_bas.indexOf(self.tab_basic), _translate("Client", "Basic", None))
-        self.label_2.setText(_translate("Client", "FORM", None))
         self.send_button.setText(_translate("Client", "SEND", None))
         self.tabWidget_bas.setTabText(self.tabWidget_bas.indexOf(self.tab_advanced), _translate("Client", "Advanced", None))
         self.menuFile.setTitle(_translate("Client", "File", None))
@@ -142,4 +144,5 @@ class Ui_Client(object):
         self.menuHelp.setTitle(_translate("Client", "Help", None))
         self.actionQuit.setText(_translate("Client", "Quit", None))
         self.actionOpen.setText(_translate("Client", "Open", None))
-
+        
+        
