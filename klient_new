@@ -1,0 +1,160 @@
+import sys, boxconnection, aboutwindow
+from PyQt4 import QtCore, QtGui
+from klienttest_ui import Ui_Client
+
+class MyForm(QtGui.QMainWindow):
+    def __init__(self, parent = None):
+        QtGui.QWidget.__init__(self, parent)
+        self.ui = Ui_Client()
+        self.ui.setupUi(self)
+        # dictionaries
+        self.dictcombobox_tmp = {} # temporary dict of buttons - when I get some idea how to do it other way I'll remove this!
+        self.dictanswers_tmp = {} # same as above (DEATH FROM ABOVE!)
+        # Connection box
+        self.boxCon = boxconnection.BoxConnection(self)
+        # About window
+        self.abWind = aboutwindow.AboutWindow()
+        # slots connections
+        QtCore.QObject.connect(self.ui.actionOpen,QtCore.SIGNAL("triggered()"), self.file_form_dialog)
+        QtCore.QObject.connect(self.ui.actionConnect,QtCore.SIGNAL("triggered()"), self.connect_opt)
+        QtCore.QObject.connect(self.ui.actionDisconnect,QtCore.SIGNAL("triggered()"), self.disconnect_opt)
+        QtCore.QObject.connect(self.ui.actionAbout,QtCore.SIGNAL("triggered()"), self.show_about)
+        QtCore.QObject.connect(self.ui.send_button,QtCore.SIGNAL("clicked()"), self.save_to_file)
+        QtCore.QObject.connect(self.ui.list_modules, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.load_modules)
+
+    #def write_to_alist(self, item):
+        #self.dictanswers_tmp.append(str(item.text()))
+
+    # show about info
+    def show_about(self):
+        self.abWind.show()
+
+    # load modules
+    def load_modules(self, item):
+        # clear forms
+        self.clear_forms(self.ui.formBas)
+        self.clear_forms(self.ui.formAdv)
+        
+        from os.path import isfile, split
+        import configparser
+
+        config = configparser.ConfigParser()
+
+        try:
+            config.read("example.config")
+        except:
+            print("Brak pliku.")
+
+        for x in config.sections():
+            # basic operations
+            if x[0] == 'b':
+                self.widgets_funct(x, self.ui.formBas, config)
+                                    
+            # advanced operations
+            elif x[0] == 'a':
+                self.widgets_funct(x, self.ui.formAdv, config)
+
+    # make Box Connection visible
+    def connect_opt(self):
+        #import subprocess
+        #subprocess.call([sys.executable, './boxconnection.py'])
+        self.boxCon.show()
+
+    # it only cleans for now
+    def disconnect_opt(self):
+        self.clear_forms(self.ui.formBas)
+        self.clear_forms(self.ui.formAdv)
+        self.ui.list_modules.clear()
+
+    # clears forms
+    def clear_forms(self, layout):
+        item = layout.takeAt(0) # gets an item on the top
+        while item:
+            widget = item.widget() # get a widget
+            label = layout.labelForField(widget) # gets a label associated with the widget
+            if widget: # if widget is not None
+                if label is not None: 
+                    label.deleteLater()
+                widget.deleteLater()
+            del item
+            item = layout.takeAt(0) # get another item
+        self.clear_dictionaries()
+
+    # clears dictionaries        
+    def clear_dictionaries(self):
+        self.dictcombobox_tmp.clear()
+        self.dictanswers_tmp.clear()
+        
+    # saves texts to config file
+    def save_to_file(self):
+        save_file = open("test.config", "a")
+        for x in self.dictcombobox_tmp.keys(): # change status of the button and write its text to the file
+            if self.dictcombobox_tmp[x].currentText() != "Choose one option":
+                save_file.write("[" + x + "]" + "\n") # save section
+                if self.dictcombobox_tmp[x].currentText() == 'Yes': # changes the answer to bool form
+                    save_file.write("answer = " + 'True' + "\n") # save contents
+                elif self.dictcombobox_tmp[x].currentText() == 'No': # changes the answer to bool form
+                    save_file.write("answer = " + 'False' + "\n") # save contents
+        for x in self.dictanswers_tmp.keys():# write to file from LINE EDITS (they are on listWidget)
+            if str(self.dictanswers_tmp[x].text()) != "": # temporary
+                save_file.write("[" + x + "]" + "\n") # save section
+                save_file.write("answer = " + str(self.dictanswers_tmp[x].text()) + "\n") # save contents
+        #self.clear_dictionaries()
+        save_file.close()
+
+    # creates widgets    
+    def widgets_funct(self, i, form_lay, cfg): # i - sections from cfg, listw listWidgetItem, cfg - config file
+        for y in cfg.options(i):
+            if y == 'question':
+                if 'type' in cfg.options(i): # if there is a type option that contains bool in cfg file
+                    if 'bool' in cfg.get(i, 'type'):
+                        txt = cfg.get(i, y) # question
+                        comboBox = QtGui.QComboBox(self) #QComboBox
+                        comboBox.addItem("Choose one option")
+                        comboBox.addItem('No')
+                        comboBox.addItem('Yes')
+                        _label = QtGui.QLabel(txt, self) # QLabel
+                        #_label.setStyleSheet("qproperty-wordWrap: true;") # setting text wrap
+                        #_label.adjustSize()
+                        form_lay.addRow(_label, comboBox) # adding row in LayoutForm
+                        self.dictcombobox_tmp[i] = comboBox
+                    elif 'string' in cfg.get(i, 'type'):
+                        txt = cfg.get(i, y) # question
+                        lineEdit = QtGui.QLineEdit(self) # QLineEdit
+                        _label = QtGui.QLabel(txt, self) # QLabel
+                        #_label.setStyleSheet("qproperty-wordWrap: true;") # setting text wrap
+                        #_label.adjustSize()
+                        form_lay.addRow(_label, lineEdit) # adding row in LayoutForm
+                        self.dictanswers_tmp[i] = lineEdit # if not bool put LINE EDIT
+                        
+    # opens the file and creates a form    
+    def file_form_dialog(self):
+        fd = QtGui.QFileDialog(self) # opens a file window
+        self.filename = fd.getOpenFileName() # getting a filename from chosen file
+
+        from os.path import isfile, split
+        import configparser
+
+        config = configparser.ConfigParser()
+
+        if isfile(self.filename):
+            head, tail = split(str(self.filename)) # tail - a filename without path
+            config.read(tail)
+
+            for x in config.sections():
+                # basic operations
+                if x[0] == 'b':
+                    self.widgets_funct(x, self.ui.formBas, config)
+                                    
+                # advanced operations
+                elif x[0] == 'a':
+                    self.widgets_funct(x, self.ui.formAdv, config)
+                
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    myapp = MyForm()
+    myapp.show()
+    try:
+        sys.exit(app.exec_())
+    except SystemExit:
+        print("Zamkniecie aplikacji.")
