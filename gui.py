@@ -24,6 +24,13 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_MainWindow(object):
+    def appendForm(self, question, answer):
+        self.formItemLayout = QtGui.QFormLayout()
+        self.formItemLayout.addRow(question, answer)
+        self.formLayout.addLayout(self.formItemLayout)
+        self.formItemLayout.setObjectName(_fromUtf8("formItemLayout"))
+        self.formItemLayout.setRowWrapPolicy(QtGui.QFormLayout.WrapLongRows)
+        
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(800, 500)
@@ -34,14 +41,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.listModule = QtGui.QListWidget(self.centralwidget)
         self.listModule.setObjectName(_fromUtf8("listModule"))
+#        self.listModule.setMinimumWidth(200)
         self.horizontalLayout.addWidget(self.listModule)
         self.form = QtGui.QWidget(self.centralwidget)
         self.form.setAutoFillBackground(True)
         self.form.setObjectName(_fromUtf8("form"))
-        self.formLayout = QtGui.QFormLayout(self.form)
+        self.formLayout = QtGui.QVBoxLayout(self.form)
         self.formLayout.setMargin(0)
-        self.formLayout.setVerticalSpacing(20)
-        self.formLayout.setObjectName(_fromUtf8("formLayout"))
+        self.formLayout.setSpacing(20)
         self.buttonOpt = QtGui.QPushButton("&Advenced")
         self.formLayout.addWidget(self.buttonOpt)
         self.horizontalLayout.addWidget(self.form)

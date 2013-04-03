@@ -64,7 +64,17 @@
         <attribute name="title">
          <string>Tab 1</string>
         </attribute>
-        <zorder>listModule</zorder>
+        <widget class="QWidget" name="formLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>80</y>
+           <width>160</width>
+           <height>80</height>
+          </rect>
+         </property>
+         <layout class="QFormLayout" name="basicLayout"/>
+        </widget>
        </widget>
        <widget class="QWidget" name="adv">
         <property name="enabled">
@@ -84,8 +94,6 @@
          </property>
          <layout class="QFormLayout" name="advLayout"/>
         </widget>
-        <zorder>listModule</zorder>
-        <zorder>formLayoutWidget</zorder>
        </widget>
       </widget>
      </item>

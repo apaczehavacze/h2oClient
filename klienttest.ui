@@ -41,52 +41,23 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="form_label">
-          <property name="font">
-           <font>
-            <pointsize>16</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
+         <layout class="QFormLayout" name="formBas">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
           </property>
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::ExpandingFieldsGrow</enum>
           </property>
-          <property name="lineWidth">
-           <number>1</number>
+          <property name="rowWrapPolicy">
+           <enum>QFormLayout::WrapLongRows</enum>
           </property>
-          <property name="midLineWidth">
-           <number>0</number>
+          <property name="horizontalSpacing">
+           <number>6</number>
           </property>
-          <property name="text">
-           <string/>
+          <property name="verticalSpacing">
+           <number>6</number>
           </property>
-          <property name="textFormat">
-           <enum>Qt::AutoText</enum>
-          </property>
-          <property name="pixmap">
-           <pixmap>C:/Users/Bary/Desktop/form.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QListWidget" name="listWidget_bas"/>
-        </item>
-        <item>
-         <widget class="QListWidget" name="listWidget_bas1">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -96,55 +67,27 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="form_label2">
-          <property name="font">
-           <font>
-            <pointsize>16</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
+         <layout class="QFormLayout" name="formAdv">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
           </property>
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::ExpandingFieldsGrow</enum>
           </property>
-          <property name="lineWidth">
-           <number>1</number>
+          <property name="rowWrapPolicy">
+           <enum>QFormLayout::WrapLongRows</enum>
           </property>
-          <property name="midLineWidth">
-           <number>0</number>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="textFormat">
-           <enum>Qt::AutoText</enum>
-          </property>
-          <property name="pixmap">
-           <pixmap>C:/Users/Bary/Desktop/form.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QListWidget" name="listWidget_adv"/>
-        </item>
-        <item>
-         <widget class="QListWidget" name="listWidget_adv1"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="send_button">
-          <property name="text">
-           <string>SEND</string>
-          </property>
-         </widget>
+         </layout>
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QPushButton" name="send_button">
+      <property name="text">
+       <string>SEND</string>
+      </property>
      </widget>
     </item>
    </layout>
@@ -169,6 +112,13 @@
     <property name="title">
      <string>Preferences</string>
     </property>
+    <widget class="QMenu" name="menuConnection">
+     <property name="title">
+      <string>Connection</string>
+     </property>
+     <addaction name="actionConnect"/>
+    </widget>
+    <addaction name="menuConnection"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -188,6 +138,11 @@
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
    </property>
   </action>
  </widget>
