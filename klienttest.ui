@@ -10,13 +10,26 @@
     <height>593</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+    <strikeout>false</strikeout>
+    <kerning>true</kerning>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Client</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/tree.ico</normaloff>icons/tree.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout">
     <item row="0" column="0">
-     <widget class="QTextBrowser" name="textBrowser_test"/>
+     <widget class="QListWidget" name="list_modules"/>
     </item>
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget_bas">
@@ -83,7 +96,7 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
+    <item row="1" column="0">
      <widget class="QPushButton" name="send_button">
       <property name="text">
        <string>SEND</string>
@@ -106,7 +119,8 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
-    <addaction name="actionQuit"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuPreferences">
     <property name="title">
@@ -116,7 +130,12 @@
      <property name="title">
       <string>Connection</string>
      </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Globe/Globe_32x32.png</normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Globe/Globe_32x32.png</iconset>
+     </property>
      <addaction name="actionConnect"/>
+     <addaction name="actionDisconnect"/>
     </widget>
     <addaction name="menuConnection"/>
    </widget>
@@ -124,32 +143,66 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuPreferences"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionQuit">
+  <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Delete/Delete_32x32.png</normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Delete/Delete_32x32.png</iconset>
+   </property>
    <property name="text">
-    <string>Quit</string>
+    <string>Exit</string>
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Open/Open_32x32.png</normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Open/Open_32x32.png</iconset>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
   </action>
   <action name="actionConnect">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Next/Next_32x32.png</normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Next/Next_32x32.png</iconset>
+   </property>
    <property name="text">
     <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Log Out/Log Out_32x32.png</normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Log Out/Log Out_32x32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Information/Information_32x32.png</normaloff>icons/download_free_must_have_icon_set/must_have_icon_set/Information/Information_32x32.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>actionQuit</sender>
+   <sender>actionExit</sender>
    <signal>triggered()</signal>
    <receiver>Client</receiver>
    <slot>close()</slot>
