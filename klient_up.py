@@ -4,18 +4,18 @@ from klienttest_ui import Ui_Client
 
 class MyForm(QtGui.QMainWindow):
     def __init__(self, parent = None):
-    QtGui.QWidget.__init__(self, parent)
-    self.ui = Ui_Client()
-    self.ui.setupUi(self)
-    # dictionaries
-    self.dictbuttons_tmp = {} # temporary dict of buttons - when I get some idea how to do it other way I'll remove this!
-    self.dictanswers_tmp = {} # same as above (DEATH FROM ABOVE!)
-    # Connection widget
-    self.boxCon = boxconnection.BoxConnection()
-    # slots connections
-    QtCore.QObject.connect(self.ui.actionOpen,QtCore.SIGNAL("triggered()"), self.file_form_dialog)
-    QtCore.QObject.connect(self.ui.actionConnect,QtCore.SIGNAL("triggered()"), self.connect_opt)
-    QtCore.QObject.connect(self.ui.send_button,QtCore.SIGNAL("clicked()"), self.save_to_file)
+        QtGui.QWidget.__init__(self, parent)
+        self.ui = Ui_Client()
+        self.ui.setupUi(self)
+        # dictionaries
+        self.dictbuttons_tmp = {} # temporary dict of buttons - when I get some idea how to do it other way I'll remove this!
+        self.dictanswers_tmp = {} # same as above (DEATH FROM ABOVE!)
+        # Connection widget
+        self.boxCon = boxconnection.BoxConnection()
+        # slots connections
+        QtCore.QObject.connect(self.ui.actionOpen,QtCore.SIGNAL("triggered()"), self.file_form_dialog)
+        QtCore.QObject.connect(self.ui.actionConnect,QtCore.SIGNAL("triggered()"), self.connect_opt)
+        QtCore.QObject.connect(self.ui.send_button,QtCore.SIGNAL("clicked()"), self.save_to_file)
         
     #def write_to_alist(self, item):
         #self.dictanswers_tmp.append(str(item.text()))
